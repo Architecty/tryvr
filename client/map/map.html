@@ -1,12 +1,10 @@
 <Template name="map">
-<div class="content">
+			
+<div class="content-fluid">
+	<div id="map-canvas" style="position: absolute; top:0px; left:0px; height:100%; width:100%; box-sizing: border-box; z-index:-1; margin:0; border:0; padding:0"></div>
 	<div class="row">
-		<div class="col-md-3">
-			<button onclick="makeNewPoint()">Test</button>
-		
-		</div>
-		<div class="col-md-9">
-			<div id="map-canvas" style="height:500px; width:100%"></div>
+		<div class="col-md-3 col-md-offset-1">
+			{{>controlPanel}}
 		</div>
 	</div>
 </div>

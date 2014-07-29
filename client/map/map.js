@@ -1,15 +1,10 @@
-Template.map.created = function(){
+Template.map.rendered = function(){
 	initialize();
-	
-}
-
-makeNewPoint = function(){
-	Meteor.call("addRecord");
+	$("#map-canvas").height($(window).height());
 }
 
 initialize = function () {
 	console.log("Try Map");
-	//~ if(Meteor.settings.GoogleAPI){
 		GoogleMaps.init(
 			{
 				'sensor': true, //optional
@@ -19,19 +14,39 @@ initialize = function () {
 			function(){
 				var mapOptions = {
 					zoom: 3,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					mapTypeControlStyle: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+					streetViewControl: false,
+					zoomControl: false,
+					panControl: false,
+					mapTypeControl: false
+					
 				};
 				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
 				map.setCenter(new google.maps.LatLng( 20,0 ));
-		var layer = new google.maps.FusionTablesLayer({
-			  query: {
-				select: 'Basic',
-				from: '1bTU4pOm94iafDAmuEr8XYdUgj5L7yJLJME9mOtZa'
-			  },
-			  map: map,
-			});
+				
+				getMarkers();
 			}
 		);
-			console.log("Shoudl have rendered map");
+		console.log("Should have rendered map");
+	}
+
+getMarkers = function(){
+	
+	Meteor.call('returnMarkers', function(error, result){
+		for(var i = 0; i < result.length; i++){
+			var marker = new google.maps.Marker({
+				
+				position: new google.maps.LatLng(result[i].lat, result[i].long),
+				map: map,
+				title: result[i].title,
+				icon: result[i].icon
+			});
+			
+			google.maps.event.addListener(marker, "click", function(){
+				//When clicked, user Router to identify the selected marker
+				Router.go("/map/" + this.position);
+			});
 		}
-	//~ }
+	});
+}
