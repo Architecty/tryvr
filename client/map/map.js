@@ -1,7 +1,7 @@
 Template.map.rendered = function(){
 	initialize();
 	$("#map-canvas").height($(window).height());
-}
+};
 
 initialize = function () {
 	console.log("Try Map");
@@ -22,14 +22,14 @@ initialize = function () {
 					mapTypeControl: false
 					
 				};
-				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
+				var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
 				map.setCenter(new google.maps.LatLng( 20,0 ));
 				
 				getMarkers();
 			}
 		);
 		console.log("Should have rendered map");
-	}
+	};
 
 getMarkers = function(){
 	
@@ -49,4 +49,4 @@ getMarkers = function(){
 			});
 		}
 	});
-}
+};

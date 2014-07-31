@@ -14,13 +14,13 @@ if(Meteor.isServer){
 		function insertDemo(meetupType, location, contact, HMDS, controllers, bribes, note){
 			var geocode = [];
 			
-			if(location == ""){
+			if(location === ""){
 				return "location";
 			}
-			if(location != null) geocode = getGeocode(location)[0];
+			if(location !== null) geocode = getGeocode(location)[0];
 			
 			console.log(geocode.city);
-			if(geocode.city == null){
+			if(geocode.city === null){
 				return "geocode";
 			}
 			
@@ -40,7 +40,7 @@ if(Meteor.isServer){
 				return "hmds";
 			}
 			
-			var demoID = Demos.insert({
+			Demos.insert({
 				userType: meetupType,
 				contactMethods:contact,
 				location: location,
@@ -69,7 +69,7 @@ if(Meteor.isServer){
 		//Use this to get a simplified set of markers, accounting for markers that are in the same city
 		function returnMarkers(){
 	
-			demoPoints = Demos.find().fetch();
+			var demoPoints = Demos.find().fetch();
 			
 			var uniqueLatLng = [];
 			var allPoints = [];
@@ -85,16 +85,16 @@ if(Meteor.isServer){
 						long: demoPoints[i].geocode.longitude, 
 						icon: "", 
 						title: demoPoints[i].geocode.city + ", " + demoPoints[i].geocode.stateCode + ", " + demoPoints[i].geocode.countryCode
-					}
+					};
 					switch(demoPoints[i].userType){
 						case "individual": 
-							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 							break;
 						case "meetup": 
-							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 							break;
 						default:
-							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+							tempObject.icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
 					}
 					allPoints.push(tempObject);
 				}

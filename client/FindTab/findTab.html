@@ -1,0 +1,72 @@
+<Template name="findTab">
+<br>
+{{#if nearbyDemos}}
+
+	{{#each nearbyDemos}}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{location}}</h3>
+		</div>
+		<div class="panel-body">
+			{{#if isMeetup}}
+				<div class="alert alert-danger" role="alert">This is a meetup. Please check the notes for more information</div>
+			{{/if}}
+			
+			<b>Contact:</b>
+			<table class="table table-condensed">
+			<tbody>
+				{{#if contactMethods.reddit}}
+					<tr><td width="150px">Reddit: </td><td><a href="http://www.reddit.com/u/{{contactMethods.reddit}}" target="_blank">{{contactMethods.reddit}}</a></td></tr>
+				{{/if}}
+				{{#if contactMethods.mtbs}}
+					<tr><td width="150px">MTBS: </td><td><a href="http://www.mtbs3d.com/phpBB/viewforum.php?f=140" target="_blank">{{contactMethods.mtbs}}</a></td></tr>
+				{{/if}}
+				{{#if contactMethods.devForum}}
+					<tr><td width="150px">Oculus Forums: </td><td><a href="https://developer.oculusvr.com/forums/" target="_blank">{{contactMethods.devForum}}</a></td></tr>
+				{{/if}}
+				{{#if contactMethods.twitter}}
+					<tr><td width="150px">Twitter: </td><td><a href="https://twitter.com/{{contactMethods.reddit}}" target="_blank">{{contactMethods.twitter}}</a></td></tr>
+				{{/if}}
+				{{#if contactMethods.email}}
+					<tr><td width="150px">Email: </td><td><a href="mailto:{{contactMethods.email}}" target="_blank">{{contactMethods.email}}</a></td></tr>
+				{{/if}}
+				{{#if contactMethods.url}}
+					<tr><td width="150px">Web: </td><td><a href="{{contactMethods.url}}" target="_blank">{{contactMethods.url}}</a></td></tr>
+				{{/if}}
+			</tbody></table>
+			<table class="table"><tr><td style="vertical-align: top">
+			<table class="table table-condensed">
+				<tbody>
+					<tr><td><b>Headsets</b></td></tr>
+						{{#each headsets}}
+							<tr><td>{{this}}</td></tr>
+						{{/each}}
+				</tbody>
+			</table>
+			</td>
+			<td style="vertical-align: top">
+			<table class="table table-condensed">
+				<tbody>
+					<tr><td><b>Peripherals</b></td></tr>
+						{{#each peripherals}}
+							<tr><td>{{this}}</td></tr>
+						{{/each}}
+				</tbody>
+			</table>
+			
+			</td></tr>
+			</table>
+				
+			{{#if areBribes}}<b>Suggested bribes: </b>{{#each bribes}} {{this}}, {{/each}} {{/if}}
+			<br><br>
+			{{#if note}}<b>Note:</b>
+			<p>{{note}}</p>
+			{{/if}}
+		</div>
+	</div>
+	{{/each}}
+
+{{else}}
+<h4>Click on a marker to get started!</h4>
+{{/if}}
+</Template>
