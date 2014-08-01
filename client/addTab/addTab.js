@@ -1,4 +1,12 @@
-Template.addNewDemo.helpers({
+Template.addTab.helpers({
+	isIntroSubTab: function(){			if(Session.get("subtab") === undefined) 	return true; },
+	isBasicsSubTab: function(){			if(Session.get("subtab") === "basics") 		return true; },
+	isContactSubTab: function(){		if(Session.get("subtab") === "contact") 	return true; },
+	isHmdsSubTab: function(){			if(Session.get("subtab") === "hmds") 		return true; },
+	isPeripheralsSubTab: function(){	if(Session.get("subtab") === "peripherals") return true; },
+	isMiscSubTab: function(){			if(Session.get("subtab") === "misc") 		return true; },
+	
+	
 });
 
 addDemoLocation = function(){
@@ -85,6 +93,9 @@ addDemoLocation = function(){
 			$("#otherInput").val("");
 			$("#location").val("");
 			Meteor.subscribe("demoMapPoints");
+			
+			initialize();
+			Router.go("/find/" + result);
 			break;
 		}
 		

@@ -1,0 +1,12 @@
+<Template name="addTab">
+	
+	<div class="tab-content">
+		<div class="tab-pane {{#if isIntroSubTab}}active{{/if}}" id="Intro">			{{>introTab}}		</div>
+		<div class="tab-pane {{#if isBasicsSubTab}}active{{/if}}" id="Basics">			{{>basicsTab}}		</div>
+		<div class="tab-pane {{#if isContactSubTab}}active{{/if}}" id="Contact">		{{>contactTab}}		</div>
+		<div class="tab-pane {{#if isHmdsSubTab}}active{{/if}}" id="VRDevices">			{{>hmdsTab}}		</div>
+		<div class="tab-pane {{#if isPeripheralsSubTab}}active{{/if}}" id="Controllers">{{>peripheralsTab}}	</div>
+		<div class="tab-pane {{#if isMiscSubTab}}active{{/if}}" id="Misc">				{{>miscTab}}		</div>
+	</div>
+
+</Template>

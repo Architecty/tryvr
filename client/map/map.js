@@ -22,7 +22,7 @@ initialize = function () {
 					mapTypeControl: false
 					
 				};
-				var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
+				map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions); 
 				map.setCenter(new google.maps.LatLng( 20,0 ));
 				
 				getMarkers();
@@ -34,19 +34,22 @@ initialize = function () {
 getMarkers = function(){
 	
 	Meteor.call('returnMarkers', function(error, result){
-		for(var i = 0; i < result.length; i++){
-			var marker = new google.maps.Marker({
+		if(result){
+			for(var i = 0; i < result.length; i++){
 				
-				position: new google.maps.LatLng(result[i].lat, result[i].long),
-				map: map,
-				title: result[i].title,
-				icon: result[i].icon
-			});
-			
-			google.maps.event.addListener(marker, "click", function(){
-				//When clicked, user Router to identify the selected marker
-				Router.go("/map/" + this.position);
-			});
+				var marker = new google.maps.Marker({
+					
+					position: new google.maps.LatLng(result[i].lat, result[i].long),
+					map: map,
+					title: result[i].title,
+					icon: result[i].icon
+				});
+				
+				google.maps.event.addListener(marker, "click", function(){
+					//When clicked, user Router to identify the selected marker
+					Router.go("/find/" + this.position);
+				});
+			}
 		}
 	});
 };

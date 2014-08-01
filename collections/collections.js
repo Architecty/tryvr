@@ -1,1 +1,3 @@
-Demos = new Meteor.Collection('demos')
+Demos = new Meteor.Collection('demos');
+
+Junk = new Meteor.Collection('junk');

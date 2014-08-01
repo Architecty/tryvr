@@ -1,4 +1,4 @@
-<Template name="controllersTab">
+<Template name="peripheralsTab">
 
 <br>
     <label>Which control systems do you have?</label>
@@ -78,4 +78,7 @@
     <label for="location">Other</label>
     <input type="email" class="form-control" id="otherController" placeholder="Other control devices">
   </div>
+	<br>
+	<button class="btn btn-success pull-right" onclick="Router.go('/add/misc')">Next</button>
+	<button class="btn btn-normal pull-right" onclick="Router.go('/add/hmds')">Back</button>
 </Template>

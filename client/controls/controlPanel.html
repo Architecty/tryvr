@@ -3,32 +3,22 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><h2>TryVR</h2></h3>
-    <h3 class="panel-title">Hundreds of developers offering worldwide free demos</h3>
+    <h3 class="panel-title">Hundreds of VR enthusiasts helping others experience VR</h3>
   </div>
   <div class="panel-body">
     
     <ul class="nav nav-tabs" role="tablist">
-	  <li class="active">	<a href="#about" role="tab" data-toggle="tab">About</a></li>
-	  <li>					<a href="#find" role="tab" data-toggle="tab">Find</a></li>
-	  <li class="disabled">	<a href="#add" role="tab">Filter</a></li>
-	  <li>					<a href="#add" role="tab" data-toggle="tab">Add</a></li>
+	  <li class="{{#if isAboutTab}}active{{/if}}">	<a href="#" role="tab" data-toggle="tab" onclick="Router.go('/')">	About	</a></li>
+	  <li class="{{#if isFindTab}}active{{/if}}">					<a href="#" role="tab" data-toggle="tab" onclick="goToFind()">	Find	</a></li>
+	  <li class="{{#if isFilterTab}}active{{/if}}">	<a href="#" role="tab" onclick="Router.go('/filter')">						Filter	</a></li>
+	  <li class="{{#if isAddTab}}active{{/if}}">					<a href="#" role="tab" data-toggle="tab" onclick="Router.go('/add')">	Add		</a></li>
 	</ul>
 	
 	<div class="tab-content">
-		<div class="tab-pane active" id="about">
-		  <h3>What's this about VR?</h3>
-		  <p>Virtual Reality is amazing. It's the future we've all been waiting for, some of us for decades. The future of Lawnmower Man, Snow Crash,
-		  Ready Player One, and more. The Oculus Rift has kickstarted interest and development around the world, and finally the vision is within sight.
-		 </p>
-		  
-		  <h3>Can I try?</h3>
-		  <p>That's the point of this site! Watching people try VR for the first time is amazing, and those of us who've already experienced it want to share. We're all over the place, so click a marker and get in touch!</p>
-		  
-		  <br>
-		  <h6>Inspired by <a href="https://maps.google.com/maps/u/0/ms?msid=216080568301080371629.0004d6d217a93e60f7cc6&msa=0&dg=feature">James Mack's excellent Demo map</a>, this is an updated version that tries to fix the issues that a long-running editable Google Map collects.</h6>
-		</div>
-	  <div class="tab-pane" id="find" style="max-height:700px; overflow-y:auto">{{>findTab}}</div>
-	  <div class="tab-pane" id="add" style="max-height:700px; overflow-y:auto">{{>addNewDemo}}</div>
+		<div class="tab-pane {{#if isAboutTab}}active{{/if}}" id="about">		{{>aboutTab}}	</div>
+		<div class="tab-pane {{#if isFindTab}}active{{/if}}" id="find">			{{>findTab}}	</div>
+		<div class="tab-pane {{#if isFilterTab}}active{{/if}}" id="filter">		{{>filterTab}}	</div>
+		<div class="tab-pane {{#if isAddTab}}active{{/if}}" id="add">			{{>addTab}}		</div>
 	</div>
     
     
