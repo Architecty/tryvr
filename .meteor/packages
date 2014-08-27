@@ -5,8 +5,8 @@
 
 standard-app-packages
 insecure
-bootstrap-3
-geocoder
-iron-router
+aldeed:geocoder@0.3.0
+cmather:iron-router@0.8.2
 http
-googlemaps
+mrt:googlemaps@0.0.2
+mizzao:bootstrap-3
